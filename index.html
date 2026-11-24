@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Мой фитнес-трекер: питание, тренировки и прогресс">
+  <title>Мой фитнес-трекер · Pink Edition</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ШАПКА -->
+  <section class="hero">
+    <div class="hero__avatar">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="50" fill="#fff0f6"/>
+        <path d="M18 100 Q22 68 38 62 L62 62 Q78 68 82 100 Z" fill="#2b2b3a"/>
+        <path d="M30 100 Q33 74 42 68 L58 68 Q67 74 70 100 Z" fill="#ff6fae"/>
+        <rect x="45" y="52" width="10" height="12" rx="4" fill="#e39a80"/>
+        <ellipse cx="50" cy="38" rx="19" ry="21" fill="#f7c6ad"/>
+        <path d="M31 34 Q31 16 50 15 Q69 16 69 34 Q66 26 58 24 Q50 22 42 24 Q34 26 31 34 Z" fill="#221a24"/>
+        <circle cx="43" cy="38" r="2.2" fill="#221a24"/>
+        <circle cx="57" cy="38" r="2.2" fill="#221a24"/>
+        <path d="M43 49 Q50 54 57 49" stroke="#a13a5e" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="hero__text">
+      <h1 class="hero__name" id="heroName">Твой тренер</h1>
+      <p class="hero__quote" id="heroQuote">Каждый день — шаг к твоей цели!</p>
+    </div>
+  </section>
+
+  <!-- НАВИГАЦИЯ -->
+  <nav class="tabs" aria-label="Разделы приложения">
+    <button class="tabs__btn tabs__btn--active" data-tab="food">🥗 Питание</button>
+    <button class="tabs__btn" data-tab="train">🏋️ Тренировки</button>
+    <button class="tabs__btn" data-tab="week">📈 Прогресс</button>
+  </nav>
+
+  <!-- ПИТАНИЕ -->
+  <section class="tab tab--active" id="tab-food">
+
+    <article class="card">
+      <h2 class="card__title">📊 Дневная цель</h2>
+
+      <div class="row">
+        <span class="row__label">Калории</span>
+        <span class="row__value" id="calTotal">0 / 2100 ккал</span>
+      </div>
+
+      <div class="progress">
+        <div class="progress__fill" id="calBar"></div>
+      </div>
+
+      <div class="row">
+        <span class="row__label">Белок</span>
+        <span class="row__value" id="protTotal">0 / 90 г</span>
+      </div>
+
+      <div class="progress">
+        <div class="progress__fill progress__fill--blue" id="protBar"></div>
+      </div>
+
+      <p class="note" id="hint">Добавьте продукты ниже — прогресс обновится автоматически.</p>
+    </article>
+
+    <article class="card">
+      <h2 class="card__title">➕ Добавить продукт</h2>
+
+      <input class="input" id="foodName" placeholder="Название продукта">
+
+      <div class="btn-row">
+        <input class="input" id="foodCal" type="number" min="0" placeholder="Ккал">
+        <input class="input" id="foodProt" type="number" min="0" placeholder="Белки, г">
+      </div>
+
+      <button class="btn btn--full" id="addFoodBtn">Добавить</button>
+      <p class="note">Ккал и белок обычно указаны на упаковке.</p>
+    </article>
+
+    <article class="card">
+      <h2 class="card__title">🍽️ Съедено сегодня <span class="badge" id="foodCount">0</span></h2>
+
+      <div id="foodList">
+        <p class="note">Пока пусто. Добавьте первый продукт.</p>
+      </div>
+
+      <button class="btn btn--secondary btn--small" id="resetDayBtn">Сбросить день</button>
+    </article>
+
+    <article class="card">
+      <h2 class="card__title">💡 Ориентиры по продуктам</h2>
+
+      <p class="note">
+        • Куриная грудка 100 г — примерно 165 ккал, 31 г белка<br>
+        • Яйцо — примерно 70 ккал, 6 г белка<br>
+        • Творог 5% 100 г — примерно 120 ккал, 17 г белка<br>
+        • Гречка отварная 100 г — примерно 110 ккал, 4 г белка<br>
+        • Банан — примерно 90 ккал, 1 г белка
+      </p>
+    </article>
+
+  </section>
+
+  <!-- ТРЕНИРОВКИ -->
+  <section class="tab" id="tab-train">
+
+    <article class="card">
+      <h2 class="card__title">📅 Твоя программа на неделю</h2>
+
+      <p class="note">
+        Начальный уровень. Два дня посвящены ягодицам и ногам,
+        один день — верхней части тела. Между тренировками есть время для восстановления.
+      </p>
+    </article>
+
+    <article class="card">
+      <h2 class="card__title">🗓️ Расписание</h2>
+
+      <div class="row"><span class="row__label">Понедельник</span><span class="row__value">День A</span></div>
+      <div class="row"><span class="row__label">Вторник</span><span class="row__value">Отдых</span></div>
+      <div class="row"><span class="row__label">Среда</span><span class="row__value">День C</span></div>
+      <div class="row"><span class="row__label">Четверг</span><span class="row__value">Отдых</span></div>
+      <div class="row"><span class="row__label">Пятница</span><span class="row__value">День B</span></div>
+      <div class="row"><span class="row__label">Суббота</span><span class="row__value">Лёгкая активность</span></div>
+      <div class="row"><span class="row__label">Воскресенье</span><span class="row__value">Отдых</span></div>
+    </article>
+
+    <article class="card">
+      <h2 class="card__title card__title--day">🍑 День A — Сила и ягодицы</h2>
+      <p class="note">Ягодичные мышцы и задняя поверхность бедра.</p>
+      <div id="dayA"></div>
+    </article>
+
+    <article class="card">
+      <h2 class="card__title card__title--day">🍑 День B — Объём и изоляция</h2>
+      <p class="note">Ягодицы и мышцы ног.</p>
+      <div id="dayB"></div>
+    </article>
+
+    <article class="card">
+      <h2 class="card__title card__title--day">💪 День C — Верх тела</h2>
+      <p class="note">Спина, плечи и мышцы корпуса.</p>
+      <div id="dayC"></div>
+    </article>
+
+    <article class="card">
+      <h2 class="card__title">📈 Прогресс тренировок</h2>
+
+      <div class="row">
+        <span class="row__label">Выполнено упражнений</span>
+        <span class="row__value" id="exProgress">0 / 15</span>
+      </div>
+
+      <div class="progress">
+        <div class="progress__fill" id="exBar"></div>
+      </div>
+
+      <button class="btn btn--secondary btn--small" id="resetWeekBtn">Сбросить неделю</button>
+    </article>
+
+    <article class="card">
+      <h2 class="card__title">⚠️ Важно</h2>
+
+      <p class="note">
+        • Начинай с небольших весов.<br>
+        • Техника важнее рабочего веса.<br>
+        • Разминайся 5–10 минут.<br>
+        • Между тяжёлыми подходами отдыхай 2–3 минуты.<br>
+        • Увеличивай вес постепенно.<br>
+        • При боли останови упражнение.
+      </p>
+    </article>
+
+  </section>
+
+  <!-- ПРОГРЕСС -->
+  <section class="tab" id="tab-week">
+
+    <article class="card">
+      <h2 class="card__title">📅 Текущая неделя <span class="badge" id="curWeekRange"></span></h2>
+      <p class="note">Здесь будут отображаться твои результаты.</p>
+    </article>
+
+    <!-- КАЛЕНДАРЬ -->
+    <article class="card">
+
+      <h2 class="card__title">🗓️ Мой календарь тренировок</h2>
+
+      <div class="calendar-header">
+        <button class="calendar-arrow" id="prevMonth" type="button">‹</button>
+        <h3 id="calendarMonth">Ноябрь 2026</h3>
+        <button class="calendar-arrow" id="nextMonth" type="button">›</button>
+      </div>
+
+      <div class="calendar-weekdays">
+        <span>Пн</span>
+        <span>Вт</span>
+        <span>Ср</span>
+        <span>Чт</span>
+        <span>Пт</span>
+        <span>Сб</span>
+        <span>Вс</span>
+      </div>
+
+      <div class="calendar-grid" id="calendarGrid"></div>
+
+      <div class="calendar-legend">
+        <span>🍑 День A</span>
+        <span>💗 День B</span>
+        <span>💜 День C</span>
+        <span>🌿 Отдых</span>
+      </div>
+
+      <div class="calendar-editor">
+        <h3 id="selectedDateTitle">Выбери день в календаре</h3>
+        <p class="note">Как прошёл этот день?</p>
+
+        <div class="calendar-options">
+          <button class="calendar-option" data-workout="A">🍑 День A</button>
+          <button class="calendar-option" data-workout="B">💗 День B</button>
+          <button class="calendar-option" data-workout="C">💜 День C</button>
+          <button class="calendar-option" data-workout="rest">🌿 Отдых</button>
+          <button class="calendar-option" data-workout="none">Очистить отметку</button>
+        </div>
+
+        <p class="note" id="calendarStatus">Выбери дату, а затем отметь тренировку.</p>
+      </div>
+
+    </article>
+
+    <div id="currentWeekContainer"></div>
+
+    <!-- ВЕС -->
+    <article class="card">
+      <h2 class="card__title">⚖️ Записать вес</h2>
+
+      <p class="note">Взвешивайся в одинаковых условиях, чтобы отслеживать динамику.</p>
+
+      <div class="btn-row">
+        <input class="input" id="weightInput" type="number" step="0.1" min="0" placeholder="Вес, кг">
+        <button class="btn" id="saveWeightBtn">Записать</button>
+      </div>
+
+      <div id="weightLog" style="margin-top:10px"></div>
+    </article>
+
+    <!-- САМОЧУВСТВИЕ -->
+    <article class="card">
+      <h2 class="card__title">💗 Как я себя чувствую?</h2>
+
+      <p class="note">
+        Записывай ощущения после тренировки, чтобы замечать изменения
+        в настроении, энергии и восстановлении.
+      </p>
+
+      <label class="form-label" for="feelingMood">Настроение после тренировки</label>
+      <select class="input" id="feelingMood">
+        <option value="">Выбери настроение</option>
+        <option>🥰 Отличное</option>
+        <option>😊 Хорошее</option>
+        <option>😌 Спокойное</option>
+        <option>😐 Нейтральное</option>
+        <option>😔 Плохое</option>
+      </select>
+
+      <label class="form-label" for="feelingEnergy">Уровень энергии</label>
+      <select class="input" id="feelingEnergy">
+        <option value="">Выбери уровень</option>
+        <option value="1">1 — совсем нет сил</option>
+        <option value="2">2 — мало энергии</option>
+        <option value="3">3 — нормально</option>
+        <option value="4">4 — много энергии</option>
+        <option value="5">5 — полна сил</option>
+      </select>
+
+      <label class="form-label" for="feelingBody">Как чувствует себя тело?</label>
+      <select class="input" id="feelingBody">
+        <option value="">Выбери состояние</option>
+        <option>💪 Приятная нагрузка</option>
+        <option>🌸 Лёгкость в теле</option>
+        <option>😴 Усталость</option>
+        <option>🥵 Сильная усталость</option>
+        <option>⚠️ Есть неприятные ощущения</option>
+      </select>
+
+      <label class="form-label" for="feelingNote">Мои заметки</label>
+      <textarea class="input" id="feelingNote" rows="3" placeholder="Например: хорошо поработала, настроение отличное..."></textarea>
+
+      <button class="btn btn--full" id="saveFeelingBtn">💗 Сохранить самочувствие</button>
+
+      <div id="feelingHistory" style="margin-top:16px">
+        <p class="note">Здесь появятся твои записи.</p>
+      </div>
+    </article>
+
+    <!-- ИСТОРИЯ -->
+    <article class="card">
+      <h2 class="card__title">🗂️ История недель <span class="badge" id="historyCount">0</span></h2>
+      <div id="historyList"><p class="note">Пока нет завершённых недель.</p></div>
+      <button class="btn btn--secondary btn--small" id="manualCloseWeekBtn">Закрыть неделю вручную</button>
+    </article>
+
+  </section>
+
+  <!-- ТАЙМЕР -->
+  <div class="timer" id="timerOverlay" aria-hidden="true">
+
+    <div class="timer__modal">
+
+      <p class="timer__phase" id="timerPhase">Приготовься</p>
+      <h3 class="timer__title" id="timerTitle">—</h3>
+
+      <div class="timer__ring-wrap">
+        <svg viewBox="0 0 200 200">
+          <defs>
+            <linearGradient id="gradPink" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff9ec4"/>
+              <stop offset="100%" stop-color="#db2777"/>
+            </linearGradient>
+          </defs>
+
+          <circle class="timer__ring-bg" cx="100" cy="100" r="88"/>
+
+          <circle
+            class="timer__ring-fg"
+            id="timerRing"
+            cx="100"
+            cy="100"
+            r="88"
+            stroke-dasharray="552.9"
+            stroke-dashoffset="0"
+          />
+        </svg>
+
+        <div class="timer__num" id="timerNum">
+          <span class="timer__big" id="timerBig">03</span>
+          <span class="timer__unit" id="timerUnit">секунд</span>
+        </div>
+      </div>
+
+      <div class="timer__actions">
+        <button class="btn btn--plus" id="btnPlus">+30 сек</button>
+        <button class="btn btn--pause" id="btnPause">⏸ Пауза</button>
+        <button class="btn btn--skip" id="btnSkip">Пропустить</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ЗВУК -->
+  <button class="sound-toggle" id="soundToggle" title="Звук вкл/выкл">🔊</button>
+
+  <script src="script.js"></script>
+  <script src="timer.js"></script>
+
+</body>
+</html>
